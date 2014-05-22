@@ -62,6 +62,8 @@ namespace test {
 	private: System::Windows::Forms::ListBox^  listBox_geraet;
 	private: System::Windows::Forms::ListBox^  listBox_drucker;
 	private: System::Windows::Forms::Label^  label_benutzername;
+	private: System::Windows::Forms::Button^  weiter3;
+	private: System::Windows::Forms::ListBox^  listBox_benutzername;
 
 
 	protected: 
@@ -97,6 +99,8 @@ namespace test {
 			this->listBox_geraet = (gcnew System::Windows::Forms::ListBox());
 			this->listBox_drucker = (gcnew System::Windows::Forms::ListBox());
 			this->label_benutzername = (gcnew System::Windows::Forms::Label());
+			this->weiter3 = (gcnew System::Windows::Forms::Button());
+			this->listBox_benutzername = (gcnew System::Windows::Forms::ListBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->logo))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -318,11 +322,33 @@ namespace test {
 			this->label_benutzername->Text = L"Benutzername";
 			this->label_benutzername->Visible = false;
 			// 
+			// weiter3
+			// 
+			this->weiter3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->weiter3->Location = System::Drawing::Point(692, 380);
+			this->weiter3->Name = L"weiter3";
+			this->weiter3->Size = System::Drawing::Size(120, 50);
+			this->weiter3->TabIndex = 20;
+			this->weiter3->Text = L"Weiter";
+			this->weiter3->UseVisualStyleBackColor = true;
+			this->weiter3->Visible = false;
+			// 
+			// listBox_benutzername
+			// 
+			this->listBox_benutzername->FormattingEnabled = true;
+			this->listBox_benutzername->Location = System::Drawing::Point(297, 131);
+			this->listBox_benutzername->Name = L"listBox_benutzername";
+			this->listBox_benutzername->Size = System::Drawing::Size(334, 212);
+			this->listBox_benutzername->TabIndex = 21;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(824, 442);
+			this->Controls->Add(this->listBox_benutzername);
+			this->Controls->Add(this->weiter3);
 			this->Controls->Add(this->label_benutzername);
 			this->Controls->Add(this->listBox_drucker);
 			this->Controls->Add(this->listBox_geraet);
@@ -377,10 +403,16 @@ namespace test {
 				 this->listBox_drucker->Visible=false;
 				 this->weiter2->Visible=false;
 
-
-				 
-//				 this->weiter3->Visible=true;
+				 this->weiter3->Visible=true;
+				 this->label_benutzername->Visible=true;
+				 this->listBox_benutzername->Visible=true;
 			 }
+		private: System::Void weiter3_Click(System::Object^  sender, System::EventArgs^  e) {
+					this->label_benutzername->Visible=false;
+					this->listBox_benutzername->Visible=false;
+					this->weiter3->Visible=false;
+
+			}
 	private: System::Void abbrechen_Click(System::Object^  sender, System::EventArgs^  e) {
 				Application::Exit();
 			 }
