@@ -64,6 +64,8 @@ namespace test {
 	private: System::Windows::Forms::Label^  label_benutzername;
 	private: System::Windows::Forms::Button^  weiter3;
 	private: System::Windows::Forms::ListBox^  listBox_benutzername;
+	private: System::Windows::Forms::Label^  label_beschreibung_benutzername;
+
 
 
 	protected: 
@@ -101,6 +103,7 @@ namespace test {
 			this->label_benutzername = (gcnew System::Windows::Forms::Label());
 			this->weiter3 = (gcnew System::Windows::Forms::Button());
 			this->listBox_benutzername = (gcnew System::Windows::Forms::ListBox());
+			this->label_beschreibung_benutzername = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->logo))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -333,6 +336,7 @@ namespace test {
 			this->weiter3->Text = L"Weiter";
 			this->weiter3->UseVisualStyleBackColor = true;
 			this->weiter3->Visible = false;
+			this->weiter3->Click += gcnew System::EventHandler(this, &Form1::weiter3_Click);
 			// 
 			// listBox_benutzername
 			// 
@@ -341,12 +345,25 @@ namespace test {
 			this->listBox_benutzername->Name = L"listBox_benutzername";
 			this->listBox_benutzername->Size = System::Drawing::Size(334, 212);
 			this->listBox_benutzername->TabIndex = 21;
+			this->listBox_benutzername->Visible = false;
+			// 
+			// label_beschreibung_benutzername
+			// 
+			this->label_beschreibung_benutzername->AutoSize = true;
+			this->label_beschreibung_benutzername->Location = System::Drawing::Point(17, 165);
+			this->label_beschreibung_benutzername->Name = L"label_beschreibung_benutzername";
+			this->label_beschreibung_benutzername->Size = System::Drawing::Size(143, 13);
+			this->label_beschreibung_benutzername->TabIndex = 22;
+			this->label_beschreibung_benutzername->Text = L"Beschreibung Benutzername";
+			this->label_beschreibung_benutzername->Visible = false;
+			this->label_beschreibung_benutzername->Click += gcnew System::EventHandler(this, &Form1::label1_Click_1);
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(824, 442);
+			this->Controls->Add(this->label_beschreibung_benutzername);
 			this->Controls->Add(this->listBox_benutzername);
 			this->Controls->Add(this->weiter3);
 			this->Controls->Add(this->label_benutzername);
@@ -405,9 +422,11 @@ namespace test {
 
 				 this->weiter3->Visible=true;
 				 this->label_benutzername->Visible=true;
+				 this->label_beschreibung_benutzername->Visible=true;
 				 this->listBox_benutzername->Visible=true;
 			 }
 		private: System::Void weiter3_Click(System::Object^  sender, System::EventArgs^  e) {
+					this->label_beschreibung_benutzername->Visible=false;
 					this->label_benutzername->Visible=false;
 					this->listBox_benutzername->Visible=false;
 					this->weiter3->Visible=false;
@@ -428,6 +447,8 @@ namespace test {
 			 }
 	private: System::Void radio_expert_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 				 auswahl_1 = 'e';
+
+				 // Command Line (Set working directory) --> "7h3 $t@g3 !$ y0ur$. H@v3 phun!!!111elf"
 			 }
 	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
@@ -436,6 +457,8 @@ namespace test {
 	private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
 private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
