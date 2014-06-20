@@ -65,6 +65,7 @@ namespace test {
 	private: System::Windows::Forms::Button^  weiter3;
 	private: System::Windows::Forms::ListBox^  listBox_benutzername;
 	private: System::Windows::Forms::Label^  label_beschreibung_benutzername;
+	private: System::Windows::Forms::Button^  button_abschuss;
 
 
 
@@ -104,6 +105,7 @@ namespace test {
 			this->weiter3 = (gcnew System::Windows::Forms::Button());
 			this->listBox_benutzername = (gcnew System::Windows::Forms::ListBox());
 			this->label_beschreibung_benutzername = (gcnew System::Windows::Forms::Label());
+			this->button_abschuss = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->logo))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -141,7 +143,7 @@ namespace test {
 			// radio_full
 			// 
 			this->radio_full->AutoSize = true;
-			this->radio_full->Checked = true;
+			this->radio_full->Checked = false;
 			this->radio_full->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
 			this->radio_full->Location = System::Drawing::Point(12, 131);
@@ -236,6 +238,7 @@ namespace test {
 			this->text_standort->TabIndex = 10;
 			this->text_standort->Text = L"Bitte Standort eingeben";
 			this->text_standort->Visible = false;
+			this->text_standort->Click += gcnew System::EventHandler(this, &Form1::text_standort_Click);
 			// 
 			// label_standort
 			// 
@@ -358,11 +361,27 @@ namespace test {
 			this->label_beschreibung_benutzername->Visible = false;
 			this->label_beschreibung_benutzername->Click += gcnew System::EventHandler(this, &Form1::label1_Click_1);
 			// 
+			// button_abschuss
+			// 
+			this->button_abschuss->BackColor = System::Drawing::Color::ForestGreen;
+			this->button_abschuss->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->button_abschuss->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button_abschuss->Location = System::Drawing::Point(239, 130);
+			this->button_abschuss->Name = L"button_abschuss";
+			this->button_abschuss->Size = System::Drawing::Size(358, 192);
+			this->button_abschuss->TabIndex = 23;
+			this->button_abschuss->Text = L"Abschuss!";
+			this->button_abschuss->UseVisualStyleBackColor = false;
+			this->button_abschuss->Visible = false;
+			this->button_abschuss->Click += gcnew System::EventHandler(this, &Form1::button_abschuss_Click);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(824, 442);
+			this->Controls->Add(this->button_abschuss);
 			this->Controls->Add(this->label_beschreibung_benutzername);
 			this->Controls->Add(this->listBox_benutzername);
 			this->Controls->Add(this->weiter3);
@@ -394,11 +413,13 @@ namespace test {
 		}
 #pragma endregion
 	private: System::Void weiter1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 this->radio_full->Visible = false;
-				 this->radio_user->Visible = false;
-				 this->radio_expert->Visible = false;
-				 this->label_full->Visible = false;
-				 this->label_user->Visible = false;
+				 if(auswahl_1 == 'f')
+					 {
+						 this->radio_full->Visible = false;
+						 this->radio_user->Visible = false;
+						 this->radio_expert->Visible = false;
+						 this->label_full->Visible = false;
+						 this->label_user->Visible = false;
 				 this->label_expert->Visible = false;
 				 this->weiter1->Visible = false;
 				 
@@ -409,10 +430,17 @@ namespace test {
 				 this->listBox_geraet->Visible=true;
 				 this->listBox_drucker->Visible=true;
 				 this->weiter2->Visible=true;
+
+				 //DEBUGGING
+				 //MessageBox::Show( "Auswahl: ", auswahl_1);
+				 MessageBox::Show( "Auswahl: "+auswahl_1 ); 
+				 }
 			 }
 
 		private: System::Void weiter2_Click(System::Object^  sender, System::EventArgs^  e) {
-				 this->label_standort->Visible=false;
+			if(auswahl_1 == 'f')
+			{
+			this->label_standort->Visible=false;
 				 this->label_geraet->Visible=false;
 				 this->label_drucker->Visible=false;
 				 this->text_standort->Visible=false;
@@ -424,12 +452,23 @@ namespace test {
 				 this->label_benutzername->Visible=true;
 				 this->label_beschreibung_benutzername->Visible=true;
 				 this->listBox_benutzername->Visible=true;
+				 
+				 //DEBUGGING
+				 MessageBox::Show( "Standort: \nGerät: \nDrucker:" );
+			}
 			 }
 		private: System::Void weiter3_Click(System::Object^  sender, System::EventArgs^  e) {
-					this->label_beschreibung_benutzername->Visible=false;
+					if(auswahl_1 == 'f')
+					{
+					 this->label_beschreibung_benutzername->Visible=false;
 					this->label_benutzername->Visible=false;
 					this->listBox_benutzername->Visible=false;
 					this->weiter3->Visible=false;
+
+					this->button_abschuss->Visible=true;
+
+					MessageBox::Show( "Benutzername:" );
+					}
 
 			}
 	private: System::Void abbrechen_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -460,6 +499,11 @@ private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  
 		 }
 private: System::Void label1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		 }
+	private: System::Void text_standort_Click(System::Object^  sender, System::EventArgs^  e) {
+			 text_standort->Clear();
+			 }
+	private: System::Void button_abschuss_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
 };
 }
 
